@@ -1,0 +1,50 @@
+---
+title: "Codebook"
+author: "Brianna K."
+date: "2023-11-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This sample is based on the Human Activity Recognition Using Smartphones Dataset
+Version 1.0
+Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
+Smartlab - Non Linear Complex Systems Laboratory
+DITEN - Universit? degli Studi di Genova.
+Via Opera Pia 11A, I-16145, Genoa, Italy.
+activityrecognition@smartlab.ws
+www.smartlab.ws
+
+
+
+Experimental design and background: The experiments were performed with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (walking, walkingupstairs, walkingdownstairs, sitting, standing, laying) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, the 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz was recorded. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
+
+Raw data: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+Processed data: The data tables within the raw data files were read. The data tables were merged in such a way to create one large data frame that included the activity descriptions, subject identifiers, and both the training and test cohorts. Next, the mean and standard deviation measurements were extracted by subseting. The variable names were changed to provide further description (see Data dictionary below). Finally, a tidy data set was created by grouping the data frame by subject identifier and activity type. The mean of each variable was calculated according to its subject and activity grouping.
+
+Data dictionary: 
+
+subject
+        Integer 1-30 indicating the assigned number for each of the 30 individuals in the study.
+        
+activityType
+        Character value specifying type of activity performed. Includes laying, sitting, standing,           walking, walking downstairs, and walking upstairs.
+
+
+Breaking down other variables:
+Frequency is measured in Hertz and time is measured in seconds.
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAccelerometer-XYZ and tGyroscope-XYZ. These time domain signals (prefix 'time' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (timeBodyAccelerometer-XYZ and timeGravityAccelerometer-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (timeBodyAccelerometerJerk-XYZ and timeBodyGyroscopeJerk-XYZ).
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing frequencyBodyAccelerometer-XYZ and frequencyBodyAccelerometerJerk-XYZ.
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+The mean or standard deviation was calculated and is indicated within the variable by 'Mean' or 'Std'.
