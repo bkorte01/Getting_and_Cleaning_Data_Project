@@ -1,11 +1,3 @@
-# 1. Merges the training and test sets to create one data set
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement
-# 3. Uses descriptive activity names to name the activities in the data set
-# 4. Appropriately labels the data set with descriptive variable names
-# 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
-
-
-
 # Create a new folder called 'course_project' and set the working directory to this folder. 
 
 if (!file.exists("course_project")) {
@@ -25,6 +17,7 @@ unzip("course_project.zip")
 
 features <- read.table("./UCI HAR Dataset/features.txt")
 activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
+
 
 # MERGE THE TRAINING AND TEST SET TO CREATE ONE DATA SET.
 
@@ -69,6 +62,7 @@ featureIndex <- grep("std|mean\\()", features$V2, value = FALSE)
 indexedData <- subset(combinedData, select = c(featureIndex, activityType, subject))
 colnames(indexedData) <- c(features$V2[featureIndex], "activityType", "subject")
 
+
 # USE DESCRIPTIVE ACTIVITY NAMES TO NAME ACTIVITIES IN DATA SET.
 
 # I created a lowercase, "tidy" vector of the activity labels and replaced the 1-6 activity labels
@@ -95,10 +89,12 @@ newNames <- oldNames[1:66] %>%
         gsub(pattern = "BodyBody", replacement = "Body")
 colnames(indexedData) <- c(newNames, "activityType", "subject")
 
+
 # CREATE AN INDEPENDENT TIDY DATA SET WITH THE AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT.
 
-indexedData %>%
+table <- indexedData %>%
         group_by(subject, activityType) %>% 
         summarise(across(all_of(newNames), mean))
+write.table(table, row.name=FALSE)
 
 
