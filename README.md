@@ -2,6 +2,7 @@
 
 ## Project description:
 The purpose of this project was to practice collecting and working with a data set to produce a tidy data set that can be used in later analysis. The data that was used was collected from accelerometers from the Samsung Galaxy S smartphone and is included in the Codebook. 
+Raw data used is included in the course_project folder.
 
 ## Reading the table in R
 ```{r}
